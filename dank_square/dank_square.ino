@@ -11,7 +11,7 @@ void setup() {
   lc1.clearDisplay(0);
   lc1.shutdown(0, false);
   
-
+ //Test change on Matt's computer
 }
 
 void loop() {
