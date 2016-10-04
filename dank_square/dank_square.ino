@@ -7,10 +7,12 @@ LedControl lc1 = LedControl(12,11,10,1);
 //clock pin 1
 //csPin 13
 //1 device total
-int T = 500;
+int T = 200;
+int intensity = 1;
+int number = 1;
 
 void setup() {
-  lc1.setIntensity(0,10);
+  lc1.setIntensity(0,13);
   lc1.clearDisplay(0);
   lc1.shutdown(0, false);
   
@@ -25,7 +27,7 @@ void loop() {
 //       for(int j = 0; j < 4;j++){
 //         lc1.setLed(0,i,j,true);
 //         delay(T);
-////         lc1.setLed(0,i,j,false); 
+////         lc1.setLed(0,i,j,false); //uncomment this to have the light cycle along
 //       }
 //     } 
 //     
@@ -35,6 +37,13 @@ void loop() {
 //         delay(T); 
 //       }
 //     } 
+      
+     if(intensity == 16){ //Changes the intensity at each iteration
+       number = -1;
+     }else if(intensity == 1)
+     {
+        number = 1; 
+     }
 
      lc1.setRow(0,0,B10100000); //alternates the LEDs in a row
      lc1.setRow(0,1,B10010000);
@@ -42,4 +51,8 @@ void loop() {
      lc1.setRow(0,0,B01010000);
      lc1.setRow(0,1,B01100000);
      delay(T);
+     
+     lc1.setIntensity(0,intensity);
+     intensity+=number;
+     
 }
